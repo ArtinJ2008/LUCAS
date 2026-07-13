@@ -34,9 +34,9 @@ $$
 \partial\Omega_f \cap \partial\Omega_s
 $$
 
-where \(\Omega_f\) is free fluid, \(\Omega_p\) is unresolved porous material,
-\(\Omega_s\) is solid rock/mineral, and \(\Gamma_{fs}\) is a resolved
-fluid–solid interface. A model may omit \(\Omega_p\) only when all important
+where $\Omega_f$ is free fluid, $\Omega_p$ is unresolved porous material,
+$\Omega_s$ is solid rock/mineral, and $\Gamma_{fs}$ is a resolved
+fluid–solid interface. A model may omit $\Omega_p$ only when all important
 pores are resolved or their influence is demonstrably negligible.
 
 ## Scale hierarchy
@@ -102,10 +102,10 @@ $$
 \frac{g\beta\Delta T L^3}{\nu\alpha}.
 $$
 
-Here \(\mathrm{Re}\) compares inertia with viscosity,
-\(\mathrm{Pe}\) compares advection with diffusion,
-\(\mathrm{Da}\) compares transport and reaction times, and
-\(\mathrm{Ra}\) diagnoses buoyancy-driven convection for the applicable
+Here $\mathrm{Re}$ compares inertia with viscosity,
+$\mathrm{Pe}$ compares advection with diffusion,
+$\mathrm{Da}$ compares transport and reaction times, and
+$\mathrm{Ra}$ diagnoses buoyancy-driven convection for the applicable
 geometry. Characteristic scales must be stated; a dimensionless number without
 its scale definition is ambiguous.
 

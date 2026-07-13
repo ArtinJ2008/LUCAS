@@ -22,14 +22,14 @@ Any composite summary must preserve its components and preregister its weights.
 
 ## Persistence in an open system
 
-An entity \(e\) is persistent only relative to an identity rule and observation
+An entity $e$ is persistent only relative to an identity rule and observation
 window. Record its survival function:
 
 $$
 S_e(t)=\Pr(T_e>t),
 $$
 
-where \(T_e\) is time until dissolution, cleavage below the identity threshold,
+where $T_e$ is time until dissolution, cleavage below the identity threshold,
 boundary exit, or another declared terminal event. Do not count repeated
 reclassification of the same material as repeated formation.
 
@@ -73,10 +73,10 @@ q =
 {N_{\mathrm{aligned}}},
 $$
 
-but \(q\) alone is incomplete; report length, context, error spectrum, yield,
+but $q$ alone is incomplete; report length, context, error spectrum, yield,
 time, and product release.
 
-For a trait or sequence feature \(P\) in parents and \(O\) in offspring, mutual
+For a trait or sequence feature $P$ in parents and $O$ in offspring, mutual
 information can quantify statistical heredity:
 
 $$
@@ -98,7 +98,7 @@ children, transferred material, time, mechanism, and viability criteria. The
 lineage graph must handle fusion, horizontal exchange, and ambiguous parentage;
 a simple binary tree is not always correct.
 
-For an entity class with meaningful population count \(N\), a conditional growth
+For an entity class with meaningful population count $N$, a conditional growth
 rate may be:
 
 $$

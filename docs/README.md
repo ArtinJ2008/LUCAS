@@ -44,6 +44,7 @@ Unless a page states otherwise, all mechanisms in this initial documentation are
 | [Roadmap](18-roadmap.md) | Which evidence gates precede added complexity? |
 | [Open decisions](19-open-decisions.md) | Which owner and expert choices remain unresolved? |
 | [Glossary](20-glossary.md) | What do project terms mean? |
+| [First publication milestone](21-first-publication-milestone.md) | What must the first complete research vertical slice deliver? |
 | [ADR 0001](adr/0001-julia-and-accelerators.md) | Why Julia and this accelerator strategy? |
 
 ## Required records

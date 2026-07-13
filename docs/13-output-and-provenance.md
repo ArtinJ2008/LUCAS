@@ -68,8 +68,8 @@ C_{\mathrm{norm}}
 \right),
 $$
 
-where \(C_{\mathrm{norm}}\) is normalized config, \(P\) parameters,
-\(M\) model/source versions, \(S\) random-stream identity, and \(E\) the locked
+where $C_{\mathrm{norm}}$ is normalized config, $P$ parameters,
+$M$ model/source versions, $S$ random-stream identity, and $E$ the locked
 software environment. Wall-clock time may make a friendly suffix but must not be
 the scientific identity.
 

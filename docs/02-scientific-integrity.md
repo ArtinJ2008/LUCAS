@@ -20,7 +20,7 @@ transformation history travel with the value into output.
 
 ## Parameter record
 
-For parameter \(\theta\), store at least:
+For parameter $\theta$, store at least:
 
 $$
 \theta =
@@ -29,10 +29,10 @@ v,\ u,\ \mathcal{D},\ s,\ r,\ a,\ \tau,\ q
 \right)
 $$
 
-where \(v\) is the value, \(u\) its unit, \(\mathcal{D}\) an uncertainty
-distribution or bounded set, \(s\) the evidence status, \(r\) the reference,
-\(a\) the applicability conditions, \(\tau\) the transformation history, and
-\(q\) a quality or review state. A bare floating-point value in a research
+where $v$ is the value, $u$ its unit, $\mathcal{D}$ an uncertainty
+distribution or bounded set, $s$ the evidence status, $r$ the reference,
+$a$ the applicability conditions, $\tau$ the transformation history, and
+$q$ a quality or review state. A bare floating-point value in a research
 configuration is insufficient.
 
 Use the [parameter record template](templates/parameter-record-template.md).
@@ -48,7 +48,7 @@ for:
 - energy or an explicitly stated thermodynamic reservoir; and
 - boundary fluxes and source/sink terms.
 
-For a conserved quantity \(Q\), report a normalized closure residual:
+For a conserved quantity $Q$, report a normalized closure residual:
 
 $$
 \epsilon_Q(t) =
@@ -59,7 +59,7 @@ Q(t)-Q(0)-\int_0^t S_Q(\tau)\,d\tau
 }
 $$
 
-where \(S_Q\) includes signed boundary and declared volumetric sources. A small
+where $S_Q$ includes signed boundary and declared volumetric sources. A small
 residual is evidence of numerical accounting, not proof that the model is
 physically complete.
 
@@ -106,8 +106,8 @@ At minimum, separate:
 5. measurement or comparison-data uncertainty.
 
 Do not collapse these into one confidence interval without a defensible model.
-Report conditional conclusions such as “under scenario \(M_2\) and parameter
-distribution \(P_3\)” rather than universal conclusions.
+Report conditional conclusions such as “under scenario $M_2$ and parameter
+distribution $P_3$” rather than universal conclusions.
 
 ## Source and citation policy
 

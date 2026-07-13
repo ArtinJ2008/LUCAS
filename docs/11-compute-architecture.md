@@ -2,6 +2,27 @@
 
 Status: **Proposed**
 
+## Development system
+
+The measured local baseline as of 2026-07-13 is:
+
+| Property | Value |
+| --- | --- |
+| System | MacBook Pro |
+| Chip | Apple M5 |
+| CPU | 10 cores: 4 performance and 6 efficiency |
+| Unified memory | 16 GB |
+| Owner wall-time limit | No fixed limit |
+
+Do not store hardware serial numbers or device identifiers in documentation or
+published run bundles. Run provenance should record only scientifically useful
+hardware and software characteristics.
+
+The lack of a fixed wall-time limit permits long local verification and
+exploratory runs. It does not remove memory limits, justify stalled computation,
+or make a low-throughput uncertainty ensemble publishable. Record progress,
+throughput, energy where practical, and checkpoint/restart behavior.
+
 ## Language decision
 
 LUCAS will begin in Julia. The decision favors:
@@ -106,7 +127,8 @@ evidence from a representative benchmark and be triggered when one or more
 conditions holds:
 
 - the verified working set cannot fit safely in available unified memory;
-- projected turnaround exceeds the experiment's agreed limit;
+- projected completion is impractical for an accepted publication schedule or
+  required ensemble, even though no fixed local wall-time limit exists;
 - a required operation or precision mode is unsupported or unreliable on Metal;
 - the required ensemble throughput is unattainable locally; or
 - multi-GPU scaling is part of the accepted research design.

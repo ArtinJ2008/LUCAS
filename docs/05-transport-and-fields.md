@@ -49,7 +49,7 @@ $$
 \right),
 $$
 
-where the permeability tensor \(\mathbf{K}\) requires measurement, inference, or
+where the permeability tensor $\mathbf{K}$ requires measurement, inference, or
 geometry-based upscaling. Coupling resolved and homogenized regions needs
 interface verification.
 
@@ -76,7 +76,7 @@ analysis, not by default.
 
 ## Species transport
 
-For species \(i\), write conservation in flux form:
+For species $i$, write conservation in flux form:
 
 $$
 \frac{\partial c_i}{\partial t}
@@ -111,7 +111,7 @@ $$
 + \mathbf{J}_{i,\mathrm{thermal}}.
 $$
 
-Activity \(a_i=\gamma_i c_i/c^\circ\) requires a documented activity-coefficient
+Activity $a_i=\gamma_i c_i/c^\circ$ requires a documented activity-coefficient
 model. LUCAS must not treat concentration as activity in regimes where that
 approximation changes conclusions.
 
@@ -150,7 +150,7 @@ not a conserved scalar that can always be advected independently.
 
 ## Reactive surfaces
 
-For a fluid–solid interface with outward fluid normal \(\mathbf{n}\):
+For a fluid–solid interface with outward fluid normal $\mathbf{n}$:
 
 $$
 -\mathbf{n}\cdot\mathbf{J}_i
@@ -159,14 +159,14 @@ R_{i,\mathrm{surf}}
 + \frac{\partial\Gamma_i}{\partial t},
 $$
 
-where \(\Gamma_i\) is surface excess and \(R_{i,\mathrm{surf}}\) includes
+where $\Gamma_i$ is surface excess and $R_{i,\mathrm{surf}}$ includes
 surface reactions. Adsorption, desorption, site competition, mineral alteration,
 and surface charge require explicit site balances.
 
 ## Particle coupling
 
 A particle-based region exchanges species with the continuum through conservative
-operators. For species \(i\):
+operators. For species $i$:
 
 $$
 \Delta M_{i,\mathrm{field}}

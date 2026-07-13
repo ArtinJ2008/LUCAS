@@ -16,7 +16,7 @@ methods according to copy number.
 ## Discrete conservation
 
 Prefer flux-form spatial discretization so internal face fluxes cancel. For cell
-\(V_k\):
+$V_k$:
 
 $$
 \frac{d}{dt}
@@ -59,14 +59,14 @@ accuracy and event bias.
 
 Negative concentrations or populations are invalid. Use conservative
 positivity-preserving schemes where possible. Silent clipping,
-\(c_i\leftarrow\max(c_i,0)\), changes mass and can create false reaction
+$c_i\leftarrow\max(c_i,0)$, changes mass and can create false reaction
 opportunities. If an emergency limiter is part of an experimental method, report
 its activation and mass correction and fail claim-bearing runs above a declared
 tolerance.
 
 ## Refinement and convergence
 
-For quantity of interest \(Q_h\) at characteristic spacing \(h\), an observed
+For quantity of interest $Q_h$ at characteristic spacing $h$, an observed
 order under halving may be estimated by:
 
 $$
@@ -103,7 +103,7 @@ regression tests, not scientific verification.
 
 ## Coupling and splitting
 
-For operators \(A\) and \(B\), a split update differs from the coupled solution
+For operators $A$ and $B$, a split update differs from the coupled solution
 when the operators do not commute. Compare Lie, Strang, or monolithic methods on
 relevant problems and refine the coupling interval. Every model card declares
 the coupling order and conserved quantities.

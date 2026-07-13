@@ -12,7 +12,8 @@ chemical systems.
 ## What LUCAS is
 
 LUCAS is planned as a configurable, three-dimensional, multiscale simulation
-centered on a hydrothermal-vent system. It will couple:
+centered first on a geologically modeled alkaline hydrothermal-vent system. It
+will couple:
 
 - fluid flow, heat transport, and porous vent geometry;
 - dissolved-species transport, electrochemical gradients, and mineral surfaces;
@@ -138,6 +139,7 @@ for per-claim provenance.
 
 ## Starting resources
 
+- [First publication milestone](docs/21-first-publication-milestone.md)
 - [Initial evidence ledger](docs/17-evidence-ledger.md)
 - [Mathematical model index](docs/05-transport-and-fields.md)
 - [Validation and verification plan](docs/15-validation-and-verification.md)

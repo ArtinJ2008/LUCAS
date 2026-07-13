@@ -45,8 +45,8 @@ d\mathbf{X}_i =
 + \sqrt{2\mathbf{D}_i}\,d\mathbf{W}_i.
 $$
 
-Here \(\mathbf{M}_i\) is mobility, \(\mathbf{D}_i\) the diffusion tensor, and
-\(\mathbf{W}_i\) a Wiener process. Under equilibrium assumptions:
+Here $\mathbf{M}_i$ is mobility, $\mathbf{D}_i$ the diffusion tensor, and
+$\mathbf{W}_i$ a Wiener process. Under equilibrium assumptions:
 
 $$
 \mathbf{D}_i = k_B T\,\mathbf{M}_i.
@@ -77,8 +77,8 @@ A contact does not automatically create a bond. A reaction candidate passes:
 6. stochastic acceptance from a calibrated microscopic rate; and
 7. atomic/coarse mass, charge, and energy-accounting checks.
 
-For a constant conditional microscopic hazard \(k_{\mathrm{micro}}\) over
-\(\Delta t\), a candidate acceptance probability is:
+For a constant conditional microscopic hazard $k_{\mathrm{micro}}$ over
+$\Delta t$, a candidate acceptance probability is:
 
 $$
 P_{\mathrm{react}}

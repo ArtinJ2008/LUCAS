@@ -4,14 +4,14 @@ Status: **Proposed model requirements**
 
 ## Reaction representation
 
-For \(N_s\) species and \(N_r\) reactions, define stoichiometric matrix
-\(\mathbf{S}\in\mathbb{Z}^{N_s\times N_r}\). The homogeneous chemical source is:
+For $N_s$ species and $N_r$ reactions, define stoichiometric matrix
+$\mathbf{S}\in\mathbb{Z}^{N_s\times N_r}$. The homogeneous chemical source is:
 
 $$
 \mathbf{R} = \mathbf{S}\mathbf{r},
 $$
 
-where \(r_j\) is the net rate of reaction \(j\). Each reaction record includes:
+where $r_j$ is the net rate of reaction $j$. Each reaction record includes:
 
 - balanced reactants and products;
 - phases, charge, and elemental or coarse-grained composition;
@@ -24,7 +24,7 @@ where \(r_j\) is the net rate of reaction \(j\). Each reaction record includes:
 
 ## Activities and mass action
 
-For a reversible elementary reaction \(j\), a candidate activity-based rate is:
+For a reversible elementary reaction $j$, a candidate activity-based rate is:
 
 $$
 r_j =
@@ -33,7 +33,7 @@ k_{j,+}\prod_i a_i^{\nu_{ij}^{-}}
 k_{j,-}\prod_i a_i^{\nu_{ij}^{+}},
 $$
 
-where \(\nu^{-}\) and \(\nu^{+}\) are reactant and product stoichiometric
+where $\nu^{-}$ and $\nu^{+}$ are reactant and product stoichiometric
 coefficients. Empirical overall reactions may not obey an elementary mass-action
 law; their measured rate law must be used only in its validated regime.
 
@@ -101,8 +101,8 @@ energies, explicit site types, or experimentally fitted microkinetics.
 
 ## Stochastic reactions
 
-For a well-mixed mesoscopic state \(\mathbf{x}\), reaction \(j\) has propensity
-\(a_j(\mathbf{x})\) such that:
+For a well-mixed mesoscopic state $\mathbf{x}$, reaction $j$ has propensity
+$a_j(\mathbf{x})$ such that:
 
 $$
 \Pr\{\text{reaction }j\text{ in }[t,t+dt)\}
@@ -127,7 +127,7 @@ Every polymer-forming step specifies:
 - reverse hydrolysis or other cleavage; and
 - end-state chemistry.
 
-For bond class \(b\), the chain population balance must include both formation
+For bond class $b$, the chain population balance must include both formation
 and loss:
 
 $$
