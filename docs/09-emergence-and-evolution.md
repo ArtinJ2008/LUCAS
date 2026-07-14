@@ -20,6 +20,22 @@ report separate, mechanistically defined capabilities:
 
 Any composite summary must preserve its components and preregister its weights.
 
+## Terminology and current boundary
+
+In informal project conversation, the owner may say “LUCA” while asking about
+the earliest minimal self-replicating life-like system. Scientific LUCAS records
+call that target a **minimal pre-LUCA replicator**. They reserve **LUCA** for the
+last universal common ancestor of extant cellular life. The two targets differ
+in time, evidence, and required observables.
+
+The implemented M3 particle fixture demonstrates none of the capabilities in
+the table above. It contains artificial non-chemical particles, an irreversible
+numerical association rule, implicit bulk water, and one-way frozen field
+coupling. It has no metabolism or energy transduction, polymers, template,
+compartment, lineage, reproduction, variation, or selection. Particle
+persistence over eight software-test seconds, 12 artificial accepted events,
+and 21 absorbing exits are not evidence of a minimal pre-LUCA replicator.
+
 ## Persistence in an open system
 
 An entity $e$ is persistent only relative to an identity rule and observation

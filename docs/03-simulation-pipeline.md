@@ -1,6 +1,6 @@
 # Simulation pipeline
 
-Status: **Proposed architecture**
+Status: **Proposed research architecture; M1/M2 verification and M3 integration-smoke subsets implemented**
 
 ## Pipeline contract
 
@@ -15,12 +15,41 @@ scenario + parameter records + model versions + seeds
     -> coupled field/particle integration
     -> event and diagnostic streams
     -> derived analysis
-    -> static dashboard
+    -> versioned dashboard-data payload
+    -> permanent static dashboard
 ```
 
 The dashboard never writes back into raw simulation data. A changed filter,
 threshold, model, or parameter starts a new analysis or run with its own
 provenance.
+
+## Current hybrid integration-smoke path
+
+Schema `0.3` implements one deliberately limited instance of this pipeline:
+
+```text
+pinned artificial M2 config
+    -> solve porous heat and passive tracers
+    -> freeze final temperature and prescribed Darcy flux
+    -> convert Darcy flux to constant pore velocity q / porosity
+    -> initialize independent artificial particles
+    -> seeded Euler--Maruyama transport with absorbing/reflecting faces
+    -> endpoint reaction gates after absorbing removals
+    -> complete particle snapshots, accepted-event ledger, and exit ledger
+    -> exact full 3D frozen-field artifact plus semantic/artifact hashes
+    -> immutable schema 0.3 bundle
+    -> particle-system-v1 data in the permanent dashboard
+```
+
+This is **one-way, frozen-final-field coupling**, not a simultaneous multiphysics
+integration. The particles do not derive their counts from the passive tracers,
+and particle motion or events do not alter field mass, momentum, energy, or
+temperature. Bulk water is implicit rather than a particle population. The M3
+species and reaction are artificial software-test constructs and do not
+represent prebiotic chemistry. The particle clock begins at zero under the
+continuum's frozen 8 s field snapshot; the clocks are not synchronous. See the
+[hybrid model
+card](models/hybrid-particle-reaction-v0.1.md).
 
 ## Stage 1: ingest and validate
 
@@ -108,10 +137,11 @@ output must remain available and visibly marked failed.
 
 ## Stage 7: analyze and publish locally
 
-Analysis produces declared observables with dependency metadata. The dashboard
-builder copies only immutable data or content-addressed views into a static
-bundle. Exported figures include enough metadata to locate the run, analysis
-version, selection, units, and uncertainty.
+Analysis produces declared observables with dependency metadata. Each finalized
+run exports a versioned read-only data payload; the tracked dashboard imports
+that payload without copying its interface into the bundle. Exported figures
+include enough metadata to locate the run, analysis version, selection, units,
+and uncertainty.
 
 ## Failure behavior
 

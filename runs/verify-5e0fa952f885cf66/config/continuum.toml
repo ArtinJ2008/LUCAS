@@ -1,0 +1,89 @@
+schema_version = "0.2"
+kind = "verification"
+
+[classification]
+scientific = false
+purpose = "software_verification"
+parameter_status = "numerical"
+provenance = "constructed split-inlet porous-box test; not geological data"
+
+[experiment]
+id = "verify.porous_heat_transport.split_inlet"
+mode = "software_test"
+plan = "docs/experiments/m2-porous-transport-verification.md"
+
+[model]
+id = "porous_heat_transport_fvm_v1"
+version = "0.1.0"
+
+[domain]
+nx = 32
+ny = 16
+nz = 16
+length_x_m = 0.032
+length_y_m = 0.016
+length_z_m = 0.016
+
+[medium]
+porosity = 0.40
+
+[flow]
+darcy_flux_x_m_s = 4.0e-4
+darcy_flux_y_m_s = 0.0
+darcy_flux_z_m_s = 0.0
+
+[heat]
+bulk_volumetric_heat_capacity_j_m3_k = 2.0e6
+fluid_volumetric_heat_capacity_j_m3_k = 4.0e6
+effective_conductivity_w_m_k = 1.0
+reference_temperature_k = 273.15
+initial_temperature_k = 300.0
+
+[[species]]
+id = "artificial_source_tracer"
+unit = "mol m^-3 fluid"
+pore_volume_diffusivity_m2_s = 1.0e-8
+initial_mol_m3 = 0.0
+
+[[species]]
+id = "artificial_ambient_tracer"
+unit = "mol m^-3 fluid"
+pore_volume_diffusivity_m2_s = 1.0e-8
+initial_mol_m3 = 1.0
+
+[boundaries]
+x_min = "split_advective_inflow"
+x_max = "advective_outflow"
+y_min = "no_flux"
+y_max = "no_flux"
+z_min = "no_flux"
+z_max = "no_flux"
+
+[boundaries.split_inflow]
+split_axis = "z"
+split_fraction = 0.50
+lower_temperature_k = 340.0
+lower_source_tracer_mol_m3 = 1.0
+lower_ambient_tracer_mol_m3 = 0.0
+upper_temperature_k = 300.0
+upper_source_tracer_mol_m3 = 0.0
+upper_ambient_tracer_mol_m3 = 1.0
+diffusive_flux = "zero_normal_gradient"
+
+[numerics]
+method = "forward_euler_upwind_two_point_fvm"
+time_step_s = 0.10
+steps = 80
+snapshot_interval_steps = 10
+precision = "Float64"
+backend = "cpu"
+
+[acceptance]
+max_relative_species_balance = 1.0e-12
+max_relative_energy_balance = 1.0e-12
+max_tracer_complement_error_mol_m3 = 1.0e-12
+require_discrete_maximum_principle = true
+require_zero_clipping = true
+
+[output]
+root = "runs"

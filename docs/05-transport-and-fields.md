@@ -1,9 +1,13 @@
 # Transport and fields
 
-Status: **Proposed mathematical model set**
+Status: **Candidate model set; one passive porous heat/transport subset implemented for verification**
 
 This page defines candidate governing equations. Adoption requires a model card,
 regime justification, boundary conditions, closure relations, and verification.
+The only implemented subset is the constant-property, prescribed-Darcy-flux
+operator in the [porous heat and conservative transport model
+card](models/porous-heat-transport-v0.1.md). Its inputs are constructed and it
+does not select the geological closures below.
 
 ## Fluid flow
 

@@ -1,0 +1,114 @@
+schema_version = "0.3"
+kind = "verification"
+
+[classification]
+scientific = false
+purpose = "software_verification"
+parameter_status = "numerical"
+provenance = "constructed continuum-coupled Brownian-particle and binary-reaction test; no chemical interpretation"
+
+[experiment]
+id = "verify.hybrid_particles.arrhenius_binary_reaction"
+mode = "software_test"
+plan = "docs/experiments/m3-hybrid-particle-reaction-verification.md"
+
+[model]
+id = "hybrid_particle_reaction_v1"
+version = "0.1.0"
+
+[continuum]
+model_id = "porous_heat_transport_fvm_v1"
+config_path = "configs/examples/porous_transport_smoke.toml"
+config_sha256 = "918085845ac5406e3a1d03fddc924eec189ec8758d440cb1a384ded3b0aa2f4b"
+coupling = "one_way_frozen_final_snapshot"
+velocity_interpretation = "pore_velocity_equals_darcy_flux_over_porosity"
+temperature_sampling = "trilinear_cell_center_clamped"
+
+[particle_domain]
+x_min = "absorbing"
+x_max = "absorbing"
+y_min = "reflecting"
+y_max = "reflecting"
+z_min = "reflecting"
+z_max = "reflecting"
+
+[particles]
+implicit_solvent = true
+solvent_label = "implicit_water"
+root_seed = 20260714
+initial_x_min_fraction = 0.05
+initial_x_max_fraction = 0.95
+initial_y_min_fraction = 0.05
+initial_y_max_fraction = 0.95
+initial_z_min_fraction = 0.05
+initial_z_max_fraction = 0.95
+
+[[particle_species]]
+id = "artificial_alpha"
+representation = "mesoscopic_discrete_particle"
+initial_count = 64
+radius_m = 2.5e-4
+translational_diffusivity_m2_s = 1.0e-8
+rotational_diffusivity_rad2_s = 0.15
+charge_e = 0
+composition = { X = 1 }
+parameter_status = "numerical"
+provenance = "constructed verification species; X is a bookkeeping token, not an element"
+
+[[particle_species]]
+id = "artificial_beta"
+representation = "mesoscopic_discrete_particle"
+initial_count = 64
+radius_m = 2.5e-4
+translational_diffusivity_m2_s = 1.0e-8
+rotational_diffusivity_rad2_s = 0.15
+charge_e = 0
+composition = { Y = 1 }
+parameter_status = "numerical"
+provenance = "constructed verification species; Y is a bookkeeping token, not an element"
+
+[[particle_species]]
+id = "artificial_xy_product"
+representation = "mesoscopic_discrete_particle"
+initial_count = 0
+radius_m = 3.2e-4
+translational_diffusivity_m2_s = 7.0e-9
+rotational_diffusivity_rad2_s = 0.08
+charge_e = 0
+composition = { X = 1, Y = 1 }
+parameter_status = "numerical"
+provenance = "constructed verification product; not a molecule or chemical prediction"
+
+[[reaction_rules]]
+id = "artificial_alpha_beta_to_xy"
+reactant_ids = ["artificial_alpha", "artificial_beta"]
+product_id = "artificial_xy_product"
+encounter_radius_m = 2.0e-3
+orientation_cosine_min = 0.0
+rate_model = "arrhenius_conditional_hazard"
+preexponential_factor_s_inv = 6.0
+activation_energy_j_mol = 2000.0
+temperature_min_k = 295.0
+temperature_max_k = 345.0
+parameter_status = "numerical"
+provenance = "constructed Arrhenius hazard for code verification; not fitted to any reaction"
+
+[numerics]
+method = "euler_maruyama_pair_scan_v1"
+time_step_s = 0.10
+steps = 80
+snapshot_interval_steps = 10
+precision = "Float64"
+backend = "cpu"
+
+[acceptance]
+max_advective_step_fraction_of_min_cell = 0.25
+max_brownian_rms_step_fraction_of_min_cell = 0.25
+max_conditional_reaction_probability = 0.50
+max_composition_residual_count = 0
+max_charge_residual_e = 0
+require_finite_particles = true
+require_normalized_orientations = true
+
+[output]
+root = "runs"

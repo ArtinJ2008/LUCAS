@@ -1,0 +1,83 @@
+[particles]
+root_seed = 20260714
+initial_count = 128
+final_count = 95
+simulated_time_s = 7.999999999999988
+steps = 80
+implicit_solvent = true
+accepted_events = 12
+time_step_s = 0.1
+boundary_exit_count = 21
+
+[initial_composition]
+Y = 64
+X = 64
+
+[model]
+id = "hybrid_particle_reaction_v1"
+version = "0.1.0"
+
+[classification]
+scientific = false
+purpose = "software_verification"
+warning = "artificial particles and rates; no chemical interpretation"
+
+[accounted_composition]
+Y = 64
+X = 64
+
+[boundary_exit_composition]
+Y = 14
+X = 8
+
+[charge_inventory_e]
+accounted = 0
+initial = 0
+boundary_exits = 0
+final_active = 0
+
+[continuum]
+particle_clock_meaning = "independent elapsed time under the frozen final continuum field"
+passed = true
+config_path = "configs/examples/porous_transport_smoke.toml"
+coupling = "one_way_frozen_final_snapshot"
+config_sha256 = "918085845ac5406e3a1d03fddc924eec189ec8758d440cb1a384ded3b0aa2f4b"
+model_id = "porous_heat_transport_fvm_v1"
+coupled_temperature_content_sha256 = "93999955f21e5ae73e956918de5b651b15fda2fe3f80522c755cf9a8c9570eba"
+field_snapshot_time_s = 8.0
+
+[final_active_composition]
+Y = 50
+X = 56
+
+[encounter_audit]
+out_of_range_pairs = 237067
+stochastic_rejections = 23
+consumed_conflicts = 0
+accepted_events = 12
+coincident_orientation_rejected_pairs = 0
+species_matched_pairs = 237645
+stochastic_trials = 35
+orientation_rejected_pairs = 543
+absorbed_boundary_exits = 21
+
+[acceptance]
+max_composition_residual_count = 0
+require_normalized_orientations = true
+max_charge_residual_e = 0
+require_finite_particles = true
+max_brownian_rms_step_fraction_of_min_cell = 0.25
+max_advective_step_fraction_of_min_cell = 0.25
+max_conditional_reaction_probability = 0.5
+
+[verification]
+wall_time_s = 1.058925875
+passed = true
+maximum_quaternion_norm_error = 4.440892098500626e-16
+advective_step_fraction = 0.1
+composition_residual_count = 0
+brownian_rms_step_fraction = 0.07745966692414834
+maximum_conditional_reaction_probability = 0.25529681152670197
+charge_residual_e = 0
+nonfinite_particle_count = 0
+

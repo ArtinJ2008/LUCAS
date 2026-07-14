@@ -14,6 +14,12 @@ acceptance boundaries. See
 
 ## Gate 0 — charter and decisions
 
+Progress: **substantially complete, scientific boundary review still open**.
+Reference setting, late-Hadean window, nested pore-network scale, challengers,
+initial evidence/parameter records, and Ueda/Weingart component targets are
+selected. Pressure-depth, salinity/major ions, joint geometry, and independent
+review remain unresolved.
+
 Deliver:
 
 - accepted scope and claim language;
@@ -28,6 +34,16 @@ Exit: geological interval, domain scale, evidence envelope, and validation
 datasets that materially change the first vertical slice are resolved.
 
 ## Gate 1 — CPU environmental vertical slice
+
+Progress: **in progress**. The Julia application/manifest, strict config subset,
+analytic periodic 3D diffusion prerequisite, content/source-derived identity,
+immutable checksummed verification bundles, CLI, and permanent data-loading
+dashboard are implemented. A conservative finite-volume CPU slice now advances
+sensible heat and complementary passive tracers through a constructed porous
+box under a prescribed Darcy flux. The Ueda source files and exact Table 2
+series are reconstructed for later component validation. Geological geometry,
+a pressure/flow solve, sourced material/flow ensembles, predictive water-rock
+chemistry, refinement, and clean-clone CI remain open.
 
 Deliver:
 
@@ -76,6 +92,18 @@ use case.
 
 ## Gate 4 — mesoscopic particles and surfaces
 
+Progress: **mechanics-only CPU integration smoke implemented; gate not complete**.
+The schema `0.3` M3 fixture implements seeded translational/rotational Brownian
+motion, absorbing-open/reflecting-no-flux boundary operators, endpoint
+distance/orientation gates, an artificial conditional hazard, stable identities, exact
+active-plus-exit token/charge accounting, accepted-event/exit provenance, and a
+dashboard particle inspector.
+Its species and reaction are artificial. Bulk water is implicit, the final M2
+fields are frozen, coupling has no feedback or field--particle mass exchange,
+and the finite bolus has no particle injection. Linear proposal intersections
+are not Brownian first-passage samples. It therefore does not satisfy the
+overlap-regime or surface requirements below.
+
 Deliver:
 
 - Brownian/advection particle transport;
@@ -86,6 +114,12 @@ Deliver:
 - 3D molecule/surface inspection.
 
 Exit: particle and field representations agree in their overlap regime.
+
+After particle refinement and coupling benchmarks, localized atomistic
+molecular-dynamics or quantum/electronic-structure studies may parameterize
+specific reactive geometry, activation barriers, mineral binding, and
+coarse-grain hand-offs. They are not a plan to simulate the whole vent
+atom-by-atom and cannot replace empirical validation.
 
 ## Gate 5 — bounded prebiotic network
 

@@ -1,6 +1,104 @@
 # Numerical methods
 
-Status: **Proposed verification strategy; solver choices open**
+Status: **Strategy proposed; diffusion/porous prerequisites verified and artificial hybrid integration smoke passing locally**
+
+## Implemented prerequisite
+
+`diffusion3d_periodic_v1` implements a Float64 CPU forward-Euler, centered
+periodic Laplacian for a constant-coefficient analytic mode. It validates the 3D
+explicit stability number, compares against the exact transient, accounts for
+the discrete mean, rejects non-finite/negative states, and writes its metrics to
+a checksummed non-scientific bundle.
+
+The registered case and tolerances are in
+[the M1 environment verification plan](experiments/m1-environment-verification.md).
+This verifies one prerequisite only. It does not select the porous-flow,
+advection, heat, reaction, or production discretizations described below.
+
+## Implemented conservative porous operator
+
+`porous_heat_transport_fvm_v1` advances a common conservative scalar balance
+
+$$
+\frac{\partial(S\psi)}{\partial t}
++\nabla\cdot(\beta\mathbf q\psi-\kappa\nabla\psi)=0
+$$
+
+on a uniform, cell-centered Cartesian mesh. Each internal face flux is
+evaluated once and accumulated with equal and opposite signs. Version 0.1 uses
+donor-cell upwind advection, centered two-point diffusion with harmonic face
+coefficients, and forward Euler time integration. It never clips state values.
+
+The registered split-inlet case applies this operator to
+local-thermal-equilibrium sensible heat and two artificial complementary
+passive tracers. Local checks cover open-boundary inventory balance,
+boundedness, exact complement preservation, constant-state preservation,
+repeatability, and exact one-cell periodic translation at a CFL number of one.
+See the [model card](models/porous-heat-transport-v0.1.md) and [M2 experiment
+record](experiments/m2-porous-transport-verification.md).
+
+This is still a prescribed-flux numerical test. It does not verify a pressure
+solve, a geological pore network, Ueda fluid transport, variable material
+properties, reaction, or the production method planned for the vent model.
+
+## Implemented mesoscopic particle reference
+
+`hybrid_particle_reaction_v1` adds a serial CPU/Float64 Euler--Maruyama reference
+over the **frozen final state** of the porous verification. For constant pore
+velocity $\mathbf u_p=\mathbf q/\phi$, one translational step is
+
+$$
+\mathbf X_i^{n+1}
+=
+\mathcal B\left(
+\mathbf X_i^n+\mathbf u_p\Delta t
++\sqrt{2D_i\Delta t}\,\boldsymbol\xi_i^n
+\right),
+\qquad
+\boldsymbol\xi_i^n\sim\mathcal N(\mathbf 0,\mathbf I_3),
+$$
+
+where $\mathcal B$ is the periodic/reflecting map for a proposal that has not
+crossed an absorbing axis. M3 uses absorbing open $x$ faces and reflecting
+no-flux $y/z$ walls. An absorbing crossing removes the particle before reaction
+evaluation and records the first linear intersection of the discrete proposal.
+That location/time is not a Brownian first-passage sample.
+
+Rotation uses a Gaussian rotation vector with component variance
+$2D_{r,i}\Delta t$, quaternion multiplication, and normalization. Endpoint
+pairs are scanned in stable order; species, endpoint distance, two-sided
+orientation, and conditional probability gates precede an event. The whole
+frozen field passes its declared temperature range as a pre-run global
+precondition; an eligible event samples temperature at its encounter midpoint.
+
+The local tests cover exact zero-diffusion advection, exact trilinear sampling,
+the free three-dimensional Brownian statistic
+
+$$
+\mathbb E\left[\lVert\Delta\mathbf X\rVert_2^2\right]=6D\Delta t,
+$$
+
+multiple-crossing periodic/reflecting maps, deterministic absorbing-exit
+records, distance/orientation gates, active-plus-exit token/charge balance,
+quaternion normalization, named RNG-substream isolation, and seeded
+repeatability. Translation, rotation, reaction decisions, and product
+orientation use separate tagged Xoshiro streams. The integrated M3 fixture also
+passes its displacement and event-probability guards. See the
+[model card](models/hybrid-particle-reaction-v0.1.md) and [experiment
+record](experiments/m3-hybrid-particle-reaction-verification.md).
+
+This reference is not yet a converged reaction--diffusion method. It uses an
+$O(N^2)$ endpoint scan, no excluded volume or hydrodynamic interactions, no
+competing-channel scheduler, a finite initial bolus without particle injection,
+independent particle/tracer initialization, and no dynamic or two-way coupling.
+Bulk water is implicit. Its one artificial irreversible
+rule has no chemical interpretation. The current linear exit intersection does
+not resolve reflection-before-absorption within a step and breaks simultaneous
+absorbing-crossing ties by axis order. Boundary first-passage distributions,
+rotational autocorrelation, diffusion- and reaction-limited benchmarks,
+space/time/particle-number refinement, manufactured coupling, restart
+equivalence, and full independent storage/lineage round trips remain required before calling
+the particle method verified for a bounded physical use.
 
 ## Selection rule
 

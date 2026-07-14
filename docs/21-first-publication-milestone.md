@@ -28,13 +28,18 @@ not a success requirement.
 
 ## Scenario boundary
 
-The primary scenario begins in the alkaline, serpentinization-driven
-hydrothermal family described in
-[Environment and geometry](04-environment-and-geometry.md). The following remain
-open before claim-bearing configuration values are fixed:
+Reference scenario v0.1 is now a late-Hadean deep-ocean system in which a
+high-temperature komatiite-hosted alteration source feeds a cooler connected
+fracture/chimney-wall pore-network segment. The selection logic, exact
+architecture, and chemistry gate are recorded in [Setting
+selection](22-setting-selection.md), [Reference
+scenario](23-reference-scenario.md), and [CO$_2$/H$_2$
+evidence](24-co2-h2-chemistry-evidence.md).
 
-- geological interval and uncertainty envelope;
-- deep versus shallow water depth;
+The 4.4–4.0 Ga interval is a hypothesis window, not a probability distribution.
+The following remain open before claim-bearing configuration values are fixed:
+
+- water depth, circulation depth, and their pressure/phase implications;
 - vent-fluid and ambient-ocean composition distributions;
 - pressure, temperature, pH/activity, salinity, and redox distributions;
 - mineral assemblage, reactive area, and alteration state;
@@ -45,6 +50,10 @@ open before claim-bearing configuration values are fixed:
 The primary simulation is geological. Analytic problems, heated pores, flow
 reactors, and modern natural analogues remain essential verification and
 validation cases.
+
+The first challenger is a shallow hydrothermal/fluctuating-surface family. The
+reference setting has priority for the selected CO$_2$/H$_2$ question, not a
+claim of historical uniqueness.
 
 ## Required vertical slice
 
@@ -59,17 +68,30 @@ validation cases.
 
 Exit: no primary boundary condition is an anonymous convenient constant.
 
+Progress: the setting comparison, architecture, machine-readable non-runnable
+scenario, initial parameter records, counterarguments, and two component
+datasets are recorded. Salinity/major ions, pressure-depth mapping, geometry
+distributions, activities, and kinetics still prevent this exit.
+
 ### M1.2 — reproducible Julia research application
 
 - Julia package/application skeleton;
 - committed `Project.toml` and `Manifest.toml`;
 - versioned config schema and unit normalization;
-- content-derived run identity and immutable bundles;
+- content- and execution-derived run identity and immutable bundles;
 - CPU reference backend;
 - deterministic random-stream construction; and
 - continuous verification tests.
 
 Exit: a clean clone can instantiate, validate, run, test, and rebuild a result.
+
+Progress: a checked-in Julia environment, strict schema 0.1 validator,
+schema 0.2 porous-verification validator, schema 0.3 hybrid-verification
+validator, content- and execution-derived verification identity, immutable checksummed bundles,
+analytic 3D diffusion case, conservative heat/passive-tracer case, artificial
+mesoscopic particle/reaction integration smoke, CLI, tests, and one tracked data-loading
+dashboard are implemented. This satisfies software and data-contract
+prerequisites, not the complete M1.2 research-bundle contract.
 
 ### M1.3 — 3D alkaline-vent environment
 
@@ -85,6 +107,13 @@ Exit: a clean clone can instantiate, validate, run, test, and rebuild a result.
 
 Exit: analytic/manufactured tests, refinement, domain-size tests, and selected
 environmental validation pass preregistered criteria.
+
+Progress: a prescribed-flux, constant-property porous-box operator now verifies
+the conservative face-flux, heat-storage, passive-tracer, open-boundary ledger,
+boundedness, and dashboard-data paths. It is artificial and cannot be relabeled
+as the source-to-pore-network environment. Geometry, pressure/flow, conjugate
+interfaces, variable properties, material ensembles, refinement, and empirical
+environmental validation remain open.
 
 ### M1.4 — bounded carbon dioxide/hydrogen chemistry
 
@@ -123,6 +152,22 @@ solely for visual effect.
 
 Exit: coupled results converge within the declared error budget and do not depend
 on hidden clipping, forcing, or backend behavior.
+
+Progress: M3 now verifies a limited one-way event path. It freezes the final M2
+temperature and prescribed pore velocity, advances independently initialized
+artificial Brownian particles, applies distance/orientation/conditional-hazard
+gates, preserves exact $X/Y$ token and formal-charge accounting, and records
+accepted events. Absorbing open $x$ faces and reflecting no-flux $y/z$ walls
+match the continuum face classes; the complete exit ledger closes
+active-plus-exit token/charge accounting. Bulk water is implicit. There is no particle
+injection, particle-to-field feedback, conservative tracer-to-particle hand-off,
+simultaneous field evolution, surface chemistry, energy balance,
+reverse/competing pathway, or calibrated reaction. Exit intersections are not Brownian
+first-passage samples. This integration smoke is a software prerequisite, not a
+fully verified particle/kinetics model, and does not meet the M1.5 exit criteria.
+See the [M3 model
+card](models/hybrid-particle-reaction-v0.1.md) and [integration-smoke
+record](experiments/m3-hybrid-particle-reaction-verification.md).
 
 ### M1.6 — Apple acceleration and NVIDIA assessment
 
@@ -164,6 +209,16 @@ Generate the static HTML/CSS/JavaScript dashboard specified in
 The dashboard must display negative and failed results as faithfully as positive
 ones.
 
+Progress: one tracked offline application now persists under `dashboard/` and
+loads versioned run JSON rather than being regenerated per bundle. It explains
+the current artificial run, exposes raw field cells and units, Ueda context,
+conservation ledgers, provenance, and limitations. For M3 it also shows exact
+recorded mesoscopic particle snapshots in a 3D projection, artificial reaction
+rules, encounter-audit counts, and selected accepted-event details. That view is
+not an atomistic molecule or scientific vent scene. Solved geological 3D
+geometry, chemical graphs, calibrated reaction networks, uncertainty
+comparisons, and publication export remain future milestone work.
+
 ## Publication package
 
 The milestone is not complete until it contains:
@@ -199,7 +254,8 @@ multiscale coupling.
 ## Non-goals for this milestone
 
 - forcing synthesis of organics;
-- RNA, DNA, peptides, protocells, heredity, or LUCA identification;
+- RNA, DNA, peptides, protocells, heredity, a minimal pre-LUCA replicator, or
+  phylogenetic LUCA identification;
 - atom-by-atom simulation of a whole vent;
 - proving the historical origin of life;
 - selecting only favorable parameter combinations or random seeds; or

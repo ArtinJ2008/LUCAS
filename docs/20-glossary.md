@@ -6,6 +6,11 @@ Status: **Living vocabulary**
 Effective thermodynamic concentration relative to a standard state. It includes
 non-ideal interactions through an activity coefficient.
 
+**Artifact hash**
+
+A digest of the exact serialized bytes of a file. For the M3 frozen temperature
+CSV, it is distinct from the semantic field-content hash.
+
 **ADR**  
 Architectural decision record: context, decision, consequences, and revisit
 conditions for an important software choice.
@@ -58,11 +63,35 @@ multiple physically and chemically distinct families.
 
 **LUCA**  
 Last universal common ancestor: the most recent ancestral population/node shared
-by all extant cellular life, not necessarily the first life.
+by all extant cellular life, not necessarily the first life. The owner may use
+“LUCA” informally in conversation as shorthand for the earliest minimal
+self-replicating life-like system; scientific records do not use that shorthand.
 
 **Mesoscopic**  
 A scale between atomistic and continuum descriptions, often using coarse
 particles and stochastic dynamics.
+
+**Minimal pre-LUCA replicator**
+
+The precise project term for a hypothetical earliest minimally self-replicating
+life-like system. It is not phylogenetic LUCA. A credible claim requires declared
+chemical identity plus functional evidence for replication/heredity and the
+supporting persistence, energy, and environmental mechanisms; visual complexity
+or an association event is insufficient.
+
+**One-way frozen-final-field coupling**
+
+A staged numerical hand-off in which a continuum model is solved first and its
+final fields drive another model without evolving further or receiving feedback.
+The downstream particle clock starts at its own zero under a field labeled with
+the continuum snapshot time; sharing a step count does not make the trajectories
+contemporaneous.
+
+**Semantic field-content hash**
+
+A digest of declared field metadata and ordered numerical values, independent of
+incidental CSV serialization. It establishes identity only under the versioned
+semantic contract used to construct it.
 
 **Model-form uncertainty**  
 Uncertainty caused by choosing an approximate equation, closure, mechanism, or
@@ -94,7 +123,8 @@ time, location, local state, and accounting.
 
 **Run bundle**  
 Immutable collection of configuration, provenance, raw/derived data,
-diagnostics, events, and dashboard for one execution.
+diagnostics, events, and a versioned dashboard-data payload for one execution.
+The reusable dashboard application is maintained separately from the bundle.
 
 **Scenario**  
 A self-consistent environmental hypothesis with dated/geological context,

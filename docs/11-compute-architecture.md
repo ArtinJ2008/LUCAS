@@ -1,6 +1,6 @@
 # Compute architecture
 
-Status: **Proposed**
+Status: **CPU reference path implemented; Apple Metal and NVIDIA acceleration proposed**
 
 ## Development system
 
@@ -48,7 +48,8 @@ CLI / experiment orchestration
         conservative field operators
         particle/reaction kernels
     storage and analysis
-    static dashboard generator
+    versioned dashboard-data export
+    tracked static dashboard application
 
 Backends:
     CPU reference | Apple Metal | NVIDIA CUDA
@@ -74,7 +75,11 @@ src/
   Solvers/
   Provenance/
   Analysis/
-  Dashboard/
+  DashboardData/
+dashboard/
+  index.html
+  app.js
+  styles.css
 test/
 configs/
   examples/
@@ -84,6 +89,11 @@ configs/
 This layout is a target, not current repository state.
 
 ## Accelerator strategy
+
+The current serial CPU diffusion, porous, and M3 integration-smoke fixtures are
+small and do not require NVIDIA hardware. M3 has not yet established accelerator
+parity or a publication-scale workload; its event count is not a resource
+forecast.
 
 1. Implement a simple CPU reference with clear scalar/array semantics.
 2. Profile representative verified workloads before accelerating.
@@ -157,5 +167,9 @@ Fast invalid physics is a failed optimization.
 
 LUCAS is an application, so `Project.toml` and `Manifest.toml` are committed.
 Run metadata records the dependency hash and whether the source tree was dirty.
+Verification run identity also includes Julia version, kernel, architecture,
+and machine string because the current exact-repeatability contract is specific
+to an execution platform. Platform changes therefore coexist under different run IDs instead of
+colliding with a same-ID bundle.
 Container or HPC environment definitions may supplement but not replace this
 record.

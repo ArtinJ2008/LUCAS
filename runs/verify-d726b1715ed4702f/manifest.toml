@@ -1,0 +1,56 @@
+[classification]
+scientific = false
+purpose = "software_verification"
+warning = "constructed porous-box data; not a vent, H2/CO2 chemistry, or early-Earth result"
+
+[time]
+finished_at_utc = "2026-07-14T18:31:46.127Z"
+simulated_time_s = 8.0
+started_at_utc = "2026-07-14T18:31:45.830Z"
+wall_time_s = 0.284543167
+
+[output]
+effective_root = "/Users/artin/Projects/LUCAS/runs"
+submitted_root = "runs"
+api_override_used = false
+
+[bundle]
+dashboard_data_schema = "dashboard-data-v1"
+run_id = "verify-d726b1715ed4702f"
+schema_version = "0.2"
+verification_status = "pass"
+state = "complete"
+
+[source]
+project_sha256 = "3abd4cbcc52b7dc9495fdab261396146bb28042137c503f3fcc217c5042aa5da"
+git_available = true
+source_tree_sha256 = "ecb9e98d3cf1dfd8d5577f18de242ab670016ba1acd2e8b5ce8e6e57bc7856a5"
+git_revision = "4e372e4adbc1f61dde3b08eb173638f014f1a429"
+git_status_sha256 = "22474c699f0310fae94493a431ef71a5d29815ea8a11c80967f720e81e83c295"
+git_dirty = true
+submitted_config_sha256 = "918085845ac5406e3a1d03fddc924eec189ec8758d440cb1a384ded3b0aa2f4b"
+lucas_version = "0.1.0"
+git_branch = "main"
+manifest_sha256 = "b05dae15e4bd7c39546db625c96d0b0da913b3269a6f93af40f0398af10d1a71"
+
+[platform]
+julia_threads = 1
+backend = "cpu"
+julia_version = "1.12.6"
+architecture = "aarch64"
+kernel = "Darwin"
+machine = "arm64-apple-darwin24.0.0"
+precision = "Float64"
+cpu_threads = 4
+
+[result]
+negative_cell_count = 0
+passed = true
+tracer_complement_error_mol_m3 = 3.3306690738754696e-16
+nonfinite_cell_count = 0
+clipping_count = 0
+maximum_relative_species_balance = 3.3403436840629286e-15
+heat_stability_factor = 0.38000000000000006
+species_stability_factor = 0.10600000000000001
+relative_energy_balance = 8.342022005175195e-16
+

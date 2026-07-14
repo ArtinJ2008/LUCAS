@@ -1,0 +1,39 @@
+schema_version = "0.1"
+kind = "verification"
+
+[classification]
+scientific = false
+purpose = "software_verification"
+
+[experiment]
+id = "verify.diffusion3d.periodic"
+mode = "software_test"
+plan = "docs/experiments/m1-environment-verification.md"
+
+[model]
+id = "diffusion3d_periodic_v1"
+version = "0.1.0"
+
+[verification.diffusion3d]
+nx = 16
+ny = 16
+nz = 16
+length_x_m = 1.0e-3
+length_y_m = 1.0e-3
+length_z_m = 1.0e-3
+diffusivity_m2_s = 1.0e-9
+time_step_s = 0.25
+steps = 40
+baseline_mol_m3 = 1.0
+amplitude_mol_m3 = 0.1
+
+[compute]
+backend = "cpu"
+precision = "Float64"
+
+[acceptance]
+max_l2_error_mol_m3 = 1.0e-4
+max_mean_drift_mol_m3 = 1.0e-12
+
+[output]
+root = "runs"

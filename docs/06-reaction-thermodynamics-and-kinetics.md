@@ -1,6 +1,6 @@
 # Reaction thermodynamics and kinetics
 
-Status: **Proposed model requirements**
+Status: **Proposed scientific requirements; one artificial conditional-hazard operator implemented for integration smoke**
 
 ## Reaction representation
 
@@ -113,6 +113,35 @@ Exact stochastic simulation, tau-leaping, or particle encounter models must be
 selected by copy number and mixing assumptions. A spatial cell is not
 well-mixed merely because it is a grid cell; compare diffusion and reaction
 timescales.
+
+## Implemented artificial verification rule
+
+`hybrid_particle_reaction_v1` implements one intentionally non-chemical binary
+rule to test spatial gating and event accounting. For an already species-,
+distance-, and orientation-eligible artificial pair, it evaluates
+
+$$
+k(T)=A\exp\left(-\frac{E_a}{RT}\right),
+\qquad
+P_{\mathrm{accept}}=1-\exp[-k(T)\Delta t],
+$$
+
+and accepts when a seeded uniform variate $U<P_{\mathrm{accept}}$. The fixture's
+$A$, $E_a$, encounter radius, reactive axes, and species are constructed
+numerical values. The full frozen continuum temperature range must lie inside
+the rule's declared applicability interval as a pre-run global precondition,
+not a per-event gate. Each eligible event samples temperature at its recorded
+encounter midpoint from that frozen field.
+
+This implementation is only an **opportunity/decision mechanic**. It has no
+activity convention, Gibbs-energy directionality, reverse reaction, competing
+sink, catalyst-specific mechanism, surface history, solvent participation,
+energy balance, or calibration to a macroscopic or microscopic chemical rate.
+Its exact $X/Y$ bookkeeping is not elemental chemistry. Consequently, an
+accepted event cannot be interpreted as H$_2$/CO$_2$ conversion, product yield,
+or prebiotic evidence. See the [model
+card](models/hybrid-particle-reaction-v0.1.md) and [M3 integration-smoke
+record](experiments/m3-hybrid-particle-reaction-verification.md).
 
 ## Polymerization and cleavage
 

@@ -1,0 +1,87 @@
+[classification]
+scientific = false
+purpose = "software_verification"
+warning = "artificial continuum-coupled particles and rates; not chemistry or a life result"
+
+[time]
+finished_at_utc = "2026-07-14T19:58:49.878Z"
+simulated_time_s = 7.999999999999988
+started_at_utc = "2026-07-14T19:58:48.819Z"
+wall_time_s = 1.058925875
+
+[output]
+effective_root = "/Users/artin/Projects/LUCAS/runs"
+submitted_root = "runs"
+api_override_used = false
+
+[bundle]
+dashboard_data_schema = "dashboard-data-v1"
+run_id = "verify-a39ef85ccde79fed"
+particle_data_schema = "particle-system-v1"
+schema_version = "0.3"
+verification_status = "pass"
+state = "complete"
+
+[source]
+lucas_version = "0.1.0"
+git_branch = "main"
+coupled_temperature_content_sha256 = "93999955f21e5ae73e956918de5b651b15fda2fe3f80522c755cf9a8c9570eba"
+project_sha256 = "829a7c5f897f6ae50898d9dc8d2b55c8196aa86abbf1aea3371666f487652576"
+source_tree_sha256 = "0a825da5a7cc974e0193cf4adae502ecce561e5434a01f36201384b7ec86a960"
+git_status_sha256 = "6818031c4d480cf200f43ad5c93d520f462266da374b30d0d0c481069ea7a523"
+submitted_config_sha256 = "b7fb91ce485304a9bf0d6293e34f15481674200f38890fb4db65b1683055485f"
+continuum_execution_identity = "verify-133e7024f4b2bc50"
+git_available = true
+git_revision = "4e372e4adbc1f61dde3b08eb173638f014f1a429"
+git_dirty = true
+manifest_sha256 = "62f30fa8ef4c85ca7b1898925e37b7fef3bd77fe1cf8945830341416a8502a91"
+continuum_config_path = "configs/examples/porous_transport_smoke.toml"
+continuum_config_sha256 = "918085845ac5406e3a1d03fddc924eec189ec8758d440cb1a384ded3b0aa2f4b"
+coupled_temperature_artifact_sha256 = "605a0369b884ea4324d22526b394583b363a065c1f979915524c7ab0d9aa60a1"
+
+[randomness]
+initializationDerivation = "xor(root_seed, 0x9e3779b97f4a7c15)"
+generator = "Julia Random.Xoshiro"
+rootSeed = "20260714"
+derivationVersion = "splitmix64_xor_tag_v1"
+
+    [randomness.streams.translation]
+    seedHex = "0x015cc58b60e81d13"
+    tagHex = "0x5452414e534c4154"
+
+    [randomness.streams.rotation]
+    seedHex = "0x02cfa1b41f7a45f8"
+    tagHex = "0x524f544154494f4e"
+
+    [randomness.streams.reactionDecision]
+    seedHex = "0x81f5930e070ae877"
+    tagHex = "0x5245414354494f4e"
+
+    [randomness.streams.productOrientation]
+    seedHex = "0x5115480703eb94d6"
+    tagHex = "0x50524f444f524945"
+
+[platform]
+julia_threads = 1
+backend = "cpu"
+julia_version = "1.12.6"
+architecture = "aarch64"
+kernel = "Darwin"
+machine = "arm64-apple-darwin24.0.0"
+precision = "Float64"
+cpu_threads = 4
+
+[result]
+final_particle_count = 95
+maximum_quaternion_norm_error = 4.440892098500626e-16
+advective_step_fraction = 0.1
+brownian_rms_step_fraction = 0.07745966692414834
+maximum_conditional_reaction_probability = 0.25529681152670197
+accepted_reaction_events = 12
+passed = true
+initial_particle_count = 128
+charge_residual_e = 0
+nonfinite_particle_count = 0
+composition_residual_count = 0
+boundary_exit_count = 21
+

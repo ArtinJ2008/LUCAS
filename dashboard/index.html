@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Reusable offline LUCAS scientific run dashboard">
+  <title>LUCAS Research Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#workspace-content">Skip to workspace</a>
+
+  <main class="application" id="application">
+    <header class="menu-bar">
+      <div class="brand-block" aria-label="LUCAS research dashboard">
+        <span class="brand-mark" aria-hidden="true">L</span>
+        <span class="brand-name">LUCAS</span>
+        <span class="brand-subtitle">Research Dashboard</span>
+      </div>
+
+      <nav class="menu-words" aria-label="Application menus">
+        <button type="button" class="text-button" data-action="show-help">File</button>
+        <button type="button" class="text-button" data-action="show-fields">View</button>
+        <button type="button" class="text-button" data-action="show-conservation">Analysis</button>
+        <button type="button" class="text-button" data-action="show-provenance">Provenance</button>
+      </nav>
+
+      <div class="run-controls">
+        <label for="run-select">Run</label>
+        <select id="run-select" aria-label="Select a loaded run"></select>
+        <input id="data-import" class="visually-hidden" type="file" accept=".json,application/json">
+        <label class="button import-button" for="data-import" title="Load a dashboard-data-v1 JSON file into this browser session">Import data…</label>
+      </div>
+    </header>
+
+    <section class="classification-strip" id="classification-strip" aria-live="polite">
+      <strong id="classification-label">Loading catalog</strong>
+      <span id="classification-warning">The dashboard is preparing the built-in run catalog.</span>
+    </section>
+
+    <section class="identity-bar" aria-label="Current run identity">
+      <span class="identity-main" id="run-identity">No run selected</span>
+      <span class="identity-detail" id="run-model">—</span>
+      <span class="identity-detail" id="run-state">—</span>
+      <span class="identity-detail" id="run-time">—</span>
+      <span class="identity-detail identity-right" id="import-status" role="status" aria-live="polite">Built-in catalog</span>
+    </section>
+
+    <section class="editor-shell">
+      <nav class="tool-rail" aria-label="Dashboard workspaces" role="tablist" aria-orientation="vertical">
+        <button type="button" class="workspace-tool is-active" role="tab" aria-selected="true" aria-controls="workspace-content" data-workspace="overview">
+          <span class="tool-glyph" aria-hidden="true">OV</span><span class="tool-name">Overview</span>
+        </button>
+        <button type="button" class="workspace-tool" role="tab" aria-selected="false" aria-controls="workspace-content" data-workspace="fields">
+          <span class="tool-glyph" aria-hidden="true">FL</span><span class="tool-name">Fields</span>
+        </button>
+        <button type="button" class="workspace-tool" role="tab" aria-selected="false" aria-controls="workspace-content" data-workspace="particles">
+          <span class="tool-glyph" aria-hidden="true">PR</span><span class="tool-name">Particles</span>
+        </button>
+        <button type="button" class="workspace-tool" role="tab" aria-selected="false" aria-controls="workspace-content" data-workspace="ueda">
+          <span class="tool-glyph" aria-hidden="true">UE</span><span class="tool-name">Ueda</span>
+        </button>
+        <button type="button" class="workspace-tool" role="tab" aria-selected="false" aria-controls="workspace-content" data-workspace="conservation">
+          <span class="tool-glyph" aria-hidden="true">Σ</span><span class="tool-name">Conservation</span>
+        </button>
+        <button type="button" class="workspace-tool" role="tab" aria-selected="false" aria-controls="workspace-content" data-workspace="provenance">
+          <span class="tool-glyph" aria-hidden="true">ID</span><span class="tool-name">Provenance</span>
+        </button>
+        <button type="button" class="workspace-tool" role="tab" aria-selected="false" aria-controls="workspace-content" data-workspace="help">
+          <span class="tool-glyph" aria-hidden="true">?</span><span class="tool-name">Help</span>
+        </button>
+      </nav>
+
+      <section class="workspace-frame">
+        <header class="document-tabs">
+          <div class="document-tab is-active">
+            <span id="document-title">Run overview</span>
+            <span class="unsaved-indicator" aria-label="Read-only artifact">READ ONLY</span>
+          </div>
+        </header>
+        <section id="workspace-content" class="workspace-content" tabindex="-1" aria-live="polite"></section>
+        <footer class="canvas-status" id="canvas-status">
+          <span id="status-primary">Ready</span>
+          <span id="status-secondary">No transformation</span>
+        </footer>
+      </section>
+
+      <aside class="inspector-column" aria-label="Run and selection inspectors">
+        <section class="inspector-panel">
+          <h2>Run inspector</h2>
+          <div class="inspector-body" id="run-inspector"></div>
+        </section>
+        <section class="inspector-panel inspector-grow">
+          <h2 id="selection-inspector-title">Workspace guide</h2>
+          <div class="inspector-body" id="selection-inspector"></div>
+        </section>
+        <section class="inspector-panel">
+          <h2>Evidence layers</h2>
+          <div class="inspector-body" id="evidence-inspector"></div>
+        </section>
+      </aside>
+    </section>
+
+    <section class="bottom-dock" aria-label="Timeline and interpretation dock">
+      <section class="timeline-panel">
+        <header class="dock-header">
+          <h2 id="timeline-title">Simulation time</h2>
+          <span id="timeline-kind">Recorded output</span>
+        </header>
+        <div class="timeline-content" id="timeline-content"></div>
+      </section>
+      <section class="dock-panel">
+        <div class="dock-tabs" role="tablist" aria-label="Bottom information panels">
+          <button type="button" class="dock-tab is-active" role="tab" aria-selected="true" data-dock="interpretation">Interpretation</button>
+          <button type="button" class="dock-tab" role="tab" aria-selected="false" data-dock="log">Run log</button>
+          <button type="button" class="dock-tab" role="tab" aria-selected="false" data-dock="keyboard">Controls</button>
+        </div>
+        <div id="dock-content" class="dock-content"></div>
+      </section>
+    </section>
+  </main>
+
+  <noscript>
+    <div class="noscript-message">This offline dashboard requires JavaScript to inspect local run data. No network connection is used.</div>
+  </noscript>
+
+  <script src="data/catalog.js"></script>
+  <script src="particle-view.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

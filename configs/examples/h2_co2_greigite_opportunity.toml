@@ -1,0 +1,233 @@
+schema_version = "0.4"
+kind = "verification"
+
+[classification]
+scientific = false
+purpose = "source_reviewed_component_benchmark"
+parameter_status = "measured_transport_plus_dft_energy_opportunity"
+provenance = "Transport coefficients are measured in pure water near 30 MPa; surface energies are vacuum-slab DFT. No aqueous surface rate law is asserted."
+
+[experiment]
+id = "verify.h2_co2.greigite_111_opportunity"
+mode = "component_benchmark"
+plan = "docs/experiments/m4-h2-co2-greigite-opportunity.md"
+
+[model]
+id = "h2_co2_greigite_111_opportunity_v1"
+version = "0.1.0"
+
+[environment]
+temperature_k = 298.15
+solvent = "pure_water_implicit"
+pressure_interpretation = "species measurements are near, but not at one identical, 30 MPa state"
+flow_velocity_m_s = [0.0, 0.0, 0.0]
+
+[domain]
+length_x_m = 2.0e-5
+length_y_m = 1.0e-5
+length_z_m = 1.0e-5
+x_lower = "absorbing_greigite_opportunity_plane"
+x_upper = "absorbing_bulk_escape"
+y = "reflecting"
+z = "reflecting"
+
+[particles]
+root_seed = 2026071401
+initial_x_min_fraction = 0.05
+initial_x_max_fraction = 0.95
+initial_y_min_fraction = 0.05
+initial_y_max_fraction = 0.95
+initial_z_min_fraction = 0.05
+initial_z_max_fraction = 0.95
+
+[[particle_species]]
+id = "h2_aq"
+label = "H2(aq)"
+formula = "H2"
+initial_count = 160
+translational_diffusivity_m2_s = 4.333e-9
+measurement_temperature_k = 298.15
+measurement_pressure_mpa = 27.9
+relative_uncertainty = 0.016
+uncertainty_kind = "standard_relative_from_reported_k2_expanded_3.2_percent"
+parameter_status = "measured"
+provenance = "Wang et al. (2023), DOI 10.1021/acs.jced.3c00085"
+source_url = "https://doi.org/10.1021/acs.jced.3c00085"
+display_radius_m = 1.0e-10
+charge_e = 0
+composition = { H = 2 }
+
+[[particle_species]]
+id = "co2_aq"
+label = "CO2(aq)"
+formula = "CO2"
+initial_count = 160
+translational_diffusivity_m2_s = 2.256e-9
+measurement_temperature_k = 298.15
+measurement_pressure_mpa = 31.6
+relative_uncertainty = 0.023
+uncertainty_kind = "standard_relative"
+parameter_status = "measured"
+provenance = "Cadogan et al. (2014), DOI 10.1021/je401008s"
+source_url = "https://doi.org/10.1021/je401008s"
+display_radius_m = 1.0e-10
+charge_e = 0
+composition = { C = 1, O = 2 }
+
+[surface]
+id = "greigite-111-lower-plane"
+mineral = "greigite"
+formula = "Fe3S4"
+facet = "{111}"
+plane_axis = "x"
+plane_coordinate_m = 0.0
+model_id = "greigite_111_dft_opportunity_v1"
+execution_mode = "encounter_ledger_only"
+conversion_enabled = false
+reason_conversion_disabled = "No measured aqueous sticking coefficients, prefactors, site-density/coverage law, or solvation-corrected barriers were found."
+provenance = "Roldan and de Leeuw (2016, 2019), DOI 10.1039/C5FD00186B and 10.1039/C8CP06371K"
+
+[[surface_rules]]
+id = "co2_activation_fea"
+equation = "CO2* <-> CO2#"
+site = "FeA"
+forward_barrier_ev = 0.43
+reaction_energy_ev = 0.39
+reverse_barrier_ev = 0.04
+forward_status = "dft_electronic_energy"
+reverse_status = "inferred_forward_minus_reaction_energy"
+source_url = "https://doi.org/10.1039/C5FD00186B"
+
+[[surface_rules]]
+id = "co2_activation_feb"
+equation = "CO2* <-> CO2#"
+site = "FeB"
+forward_barrier_ev = 0.41
+reaction_energy_ev = 0.38
+reverse_barrier_ev = 0.03
+forward_status = "dft_electronic_energy"
+reverse_status = "inferred_forward_minus_reaction_energy"
+source_url = "https://doi.org/10.1039/C5FD00186B"
+
+[[surface_rules]]
+id = "lh_formate_fea"
+equation = "CO2# + 2H* <-> HCOO* + H*"
+site = "FeA"
+forward_barrier_ev = 1.21
+reaction_energy_ev = -0.28
+reverse_barrier_ev = 1.49
+forward_status = "dft_electronic_energy"
+reverse_status = "inferred_forward_minus_reaction_energy"
+source_url = "https://doi.org/10.1039/C5FD00186B"
+
+[[surface_rules]]
+id = "lh_formate_feb"
+equation = "CO2# + 2H* <-> HCOO* + H*"
+site = "FeB"
+forward_barrier_ev = 1.15
+reaction_energy_ev = -1.25
+reverse_barrier_ev = 2.40
+forward_status = "dft_electronic_energy"
+reverse_status = "inferred_forward_minus_reaction_energy"
+source_url = "https://doi.org/10.1039/C5FD00186B"
+
+[[surface_rules]]
+id = "lh_cooh_fea"
+equation = "CO2# + 2H* <-> COOH* + H*"
+site = "FeA"
+forward_barrier_ev = 0.10
+reaction_energy_ev = 0.02
+reverse_barrier_ev = 0.08
+forward_status = "dft_electronic_energy"
+reverse_status = "inferred_forward_minus_reaction_energy"
+source_url = "https://doi.org/10.1039/C5FD00186B"
+
+[[surface_rules]]
+id = "lh_cooh_feb"
+equation = "CO2# + 2H* <-> COOH* + H*"
+site = "FeB"
+forward_barrier_ev = 0.71
+reaction_energy_ev = -0.16
+reverse_barrier_ev = 0.87
+forward_status = "dft_electronic_energy"
+reverse_status = "inferred_forward_minus_reaction_energy"
+source_url = "https://doi.org/10.1039/C5FD00186B"
+
+[[surface_rules]]
+id = "er_formate_fea"
+equation = "CO2 + 2H* <-> HCOO* + H*"
+site = "FeA"
+forward_barrier_ev = 0.94
+reaction_energy_ev = 0.03
+reverse_barrier_ev = 0.91
+forward_status = "dft_electronic_energy"
+reverse_status = "inferred_forward_minus_reaction_energy"
+source_url = "https://doi.org/10.1039/C5FD00186B"
+
+[[surface_rules]]
+id = "er_formate_feb"
+equation = "CO2 + 2H* <-> HCOO* + H*"
+site = "FeB"
+forward_barrier_ev = 1.86
+reaction_energy_ev = -0.92
+reverse_barrier_ev = 2.78
+forward_status = "dft_electronic_energy"
+reverse_status = "inferred_forward_minus_reaction_energy"
+source_url = "https://doi.org/10.1039/C5FD00186B"
+
+[[surface_rules]]
+id = "er_cooh_fea"
+equation = "CO2 + 2H* <-> COOH* + H*"
+site = "FeA"
+forward_barrier_ev = 0.84
+reaction_energy_ev = -0.17
+reverse_barrier_ev = 1.01
+forward_status = "dft_electronic_energy"
+reverse_status = "inferred_forward_minus_reaction_energy"
+source_url = "https://doi.org/10.1039/C5FD00186B"
+
+[[surface_rules]]
+id = "er_cooh_feb"
+equation = "CO2 + 2H* <-> COOH* + H*"
+site = "FeB"
+forward_barrier_ev = 1.28
+reaction_energy_ev = 0.19
+reverse_barrier_ev = 1.09
+forward_status = "dft_electronic_energy"
+reverse_status = "inferred_forward_minus_reaction_energy"
+source_url = "https://doi.org/10.1039/C5FD00186B"
+
+[[surface_rules]]
+id = "h2_associative_desorption_ss"
+equation = "2H* <-> H2 + 2*"
+site = "S-Sprime process 5"
+forward_barrier_ev = 0.46
+reaction_energy_ev = -0.48
+reverse_barrier_ev = 0.94
+forward_status = "dft_electronic_energy"
+reverse_status = "inferred_forward_minus_reaction_energy"
+source_url = "https://doi.org/10.1039/C8CP06371K"
+
+[numerics]
+method = "seeded_euler_maruyama_endpoint_absorption"
+time_step_s = 1.0e-5
+steps = 2000
+snapshot_interval_steps = 200
+
+[benchmarks]
+first_passage_sample_count = 40000
+refinement_sample_count = 30000
+max_abs_standardized_residual = 4.0
+refinement_step_counts = [4, 16, 64, 256]
+halfline_initial_distance_m = 5.0e-6
+halfline_final_time_s = 0.004
+observation_times_s = [0.0005, 0.001, 0.002, 0.004, 0.008, 0.016]
+
+[acceptance]
+max_nonfinite_particles = 0
+max_reverse_barrier_identity_error_ev = 1.0e-12
+require_refinement_error_reduction = true
+
+[output]
+root = "runs"
+dashboard_data_schema = "dashboard-data-v1"

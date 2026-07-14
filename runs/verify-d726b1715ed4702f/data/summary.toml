@@ -1,0 +1,106 @@
+[physics]
+darcy_flux_x_m_s = 0.0004
+simulated_time_s = 8.0
+darcy_flux_y_m_s = 0.0
+heat_stability_factor = 0.38000000000000006
+species_stability_factor = 0.10600000000000001
+darcy_flux_z_m_s = 0.0
+porosity = 0.4
+
+[classification]
+scientific = false
+purpose = "software_verification"
+warning = "constructed porous-box test; not geological data"
+
+[model]
+id = "porous_heat_transport_fvm_v1"
+version = "0.1.0"
+
+[balances.artificial_source_tracer]
+final_inventory = 4.0959999999998e-7
+diffusive_outflow = 0.0
+signed_residual = 1.3682047729922378e-21
+absolute_residual = 1.3682047729922378e-21
+initial_inventory = 0.0
+advective_outflow = 2.0002929612586845e-20
+diffusive_inflow = 0.0
+relative_residual = 3.3403436840629286e-15
+advective_inflow = 4.0959999999999864e-7
+
+[balances.sensible_heat]
+final_inventory = 505.4463999997552
+diffusive_outflow = 0.0
+signed_residual = 5.684341886080801e-13
+absolute_residual = 5.684341886080801e-13
+initial_inventory = 439.91039999999896
+advective_outflow = 87.98208000024547
+diffusive_inflow = 0.0
+relative_residual = 8.342022005175195e-16
+advective_inflow = 153.51808000000116
+
+[balances.artificial_ambient_tracer]
+final_inventory = 2.8672000000000214e-6
+diffusive_outflow = 0.0
+signed_residual = 2.8587361969832636e-21
+absolute_residual = 2.8587361969832636e-21
+initial_inventory = 3.2768000000000005e-6
+advective_outflow = 8.191999999999805e-7
+diffusive_inflow = 0.0
+relative_residual = 6.344851289469276e-16
+advective_inflow = 4.0959999999999864e-7
+
+[acceptance]
+max_relative_species_balance = 1.0e-12
+max_tracer_complement_error_mol_m3 = 1.0e-12
+require_discrete_maximum_principle = true
+require_zero_clipping = true
+max_relative_energy_balance = 1.0e-12
+
+[verification]
+negative_cell_count = 0
+passed = true
+tracer_complement_error_mol_m3 = 3.3306690738754696e-16
+nonfinite_cell_count = 0
+temperature_max_k = 338.44461923058236
+clipping_count = 0
+wall_time_s = 0.284543167
+temperature_min_k = 300.0000000000056
+
+    [verification.boundedness.artificial_source_tracer]
+    observed_min = 1.277657192584995e-27
+    passed = true
+    lower_bound = 0.0
+    maximum_violation = 0.0
+    unit = "mol m^-3 fluid"
+    observed_max = 0.9996906943370921
+    upper_bound = 1.0
+    tolerance = 7.105427357601002e-15
+
+    [verification.boundedness.temperature]
+    observed_min = 300.0000000000056
+    passed = true
+    lower_bound = 300.0
+    maximum_violation = 0.0
+    unit = "K"
+    observed_max = 338.44461923058236
+    upper_bound = 340.0
+    tolerance = 2.4158453015843406e-12
+
+    [verification.boundedness.artificial_ambient_tracer]
+    observed_min = 0.00030930566290791607
+    passed = true
+    lower_bound = 0.0
+    maximum_violation = 0.0
+    unit = "mol m^-3 fluid"
+    observed_max = 1.0
+    upper_bound = 1.0
+    tolerance = 7.105427357601002e-15
+
+[grid]
+nz = 16
+nx = 32
+length_z_m = 0.016
+length_y_m = 0.016
+length_x_m = 0.032
+ny = 16
+

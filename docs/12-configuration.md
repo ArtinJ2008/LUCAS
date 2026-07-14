@@ -1,6 +1,50 @@
 # Configuration
 
-Status: **Proposed contract**
+Status: **Strict schema 0.1, 0.2, and 0.3 subsets implemented; full research contract proposed**
+
+## Implemented schema subsets
+
+The Julia validator currently accepts four strict config shapes:
+
+- schema `0.1` `verification`: executable only with
+  `classification.scientific = false`, the registered periodic diffusion
+  model, CPU/Float64, explicit units in key names, stability-safe numerics, and
+  declared tolerances;
+- schema `0.2` `verification`: the non-scientific
+  `porous_heat_transport_fvm_v1` domain, medium, prescribed flow, heat, two
+  passive-species, split-boundary, numerical, acceptance, and output contract;
+- schema `0.3` `verification`: the non-scientific
+  `hybrid_particle_reaction_v1` contract, including a path-and-SHA-pinned M2
+  continuum config, explicit frozen one-way coupling semantics, particle-domain
+  boundaries, implicit solvent, root seed and initialization ranges, artificial
+particle species, artificial reaction rules, numerics, and acceptance gates;
+- `research_scenario`: a non-executable scientific record containing sources,
+  bounded/contextual parameters, applicability, uncertainty, review state,
+  validation targets, and chemistry admission blockers.
+
+Unknown keys, invalid types/ranges, duplicate IDs, missing source references,
+incompatible model choices, and unstable explicit steps fail validation. The
+schema `0.2` validator predicts and rejects excessive species and heat
+monotonicity factors before execution. Schema `0.3` additionally rejects
+chemical-looking species IDs that are not prefixed `artificial_`, non-numerical
+parameter provenance, unsupported coupling or boundary choices, a changed
+continuum digest, unbalanced token/charge stoichiometry, unsupported multiple
+channels, and unsafe particle displacement or conditional-probability limits.
+The broader referenced-record and units system below remains proposed.
+
+The hybrid schema's explicit `implicit_solvent = true` means bulk water is a
+continuum background, not a generated particle list. Its two inherited passive
+tracers are not mapped to the independently initialized particle species. The
+schema records `one_way_frozen_final_snapshot`; using the same time step and
+step count as M2 does not mean the continuum and particles evolve together. It
+requires absorbing particle faces at the continuum's open $x$ boundaries and
+reflecting particle faces at its no-flux $y/z$ boundaries. The current fixture
+has a finite initialized bolus and no particle-injection config.
+
+The author supplies one root seed. Runtime provenance records the separate
+initialization derivation and the versioned SplitMix64-XOR-tag derivation of
+named Xoshiro streams for translation, rotation, reaction decisions, and product
+orientation; these are not four anonymous user-configured seeds.
 
 ## Goals
 
@@ -21,8 +65,8 @@ Separate:
 
 ## Proposed TOML shape
 
-This example is structural and not yet executable. It intentionally contains no
-invented scientific values.
+This example describes the broader target and is not executable. It
+intentionally contains no invented scientific values.
 
 ```toml
 schema_version = "0.1"
@@ -126,6 +170,11 @@ purpose = "software_smoke_test"
 
 The dashboard must visibly distinguish them, and they may not be included in
 scientific aggregate results.
+
+The shipped verification configs write finalized bundles beneath `runs/`.
+Changing the output root is operational and excluded from the scientific
+content digest, but it does not authorize overwriting an existing finalized run
+ID or treating `tmp/` as durable storage.
 
 ## Schema evolution
 

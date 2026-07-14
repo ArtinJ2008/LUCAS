@@ -1,6 +1,6 @@
 # Molecular representation
 
-Status: **Proposed multiscale representation**
+Status: **Proposed multiscale representation; artificial mesoscopic CPU subset implemented**
 
 ## Why multiscale
 
@@ -17,6 +17,34 @@ representation that preserves the observable being studied.
 
 A 3D dashboard mesh may be derived from these levels, but rendering detail does
 not increase scientific resolution.
+
+## Implemented M3 subset
+
+The current `hybrid_particle_reaction_v1` implements only a mesoscopic
+software-verification subset. A particle has a stable ID, an artificial coarse
+species ID, position, normalized quaternion, numerical translational/rotational
+diffusivities, an exact integer token inventory, and formal charge. It advances
+under a frozen final continuum temperature field and constant pore velocity;
+the field never receives particle feedback. Bulk water is an implicit continuum
+solvent and is not instantiated as water particles.
+
+The current `artificial_alpha`, `artificial_beta`, and
+`artificial_xy_product` records are not molecules. Their $X/Y$ tokens are not
+elements, their radii do not impose excluded volume, and they contain no atom,
+bond, stereochemical, sequence, or surface-site graph. The dashboard therefore
+shows a 3D projection of mesoscopic records, not molecular shape. The accepted
+artificial event ledger verifies identity and accounting plumbing; it does not
+identify a chemical product.
+
+The implementation also stops short of the cross-resolution contract below:
+particles are initialized independently of the two passive continuum tracers,
+there is no mass-conserving field-to-particle conversion, and particles cannot
+change the fields. Particle faces now match the continuum classes—absorbing at
+open $x$ faces and reflecting at no-flux $y/z$ faces—and every removal is
+recorded. That improves boundary accounting but does not add particle injection,
+concentration hand-off, dynamic fields, or Brownian first-passage resolution.
+Details and equations are in the [hybrid model
+card](models/hybrid-particle-reaction-v0.1.md).
 
 ## Chemical identity
 

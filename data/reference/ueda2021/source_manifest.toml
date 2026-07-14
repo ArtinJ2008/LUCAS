@@ -1,0 +1,42 @@
+schema_version = "2"
+dataset_doi = "10.17632/dr9kxs8yc8.4"
+dataset_url = "https://data.mendeley.com/datasets/dr9kxs8yc8/4"
+paper_doi = "10.1029/2021GC009827"
+license = "CC BY 4.0"
+license_url = "https://creativecommons.org/licenses/by/4.0/"
+retrieved_utc_date = "2026-07-13"
+
+[[files]]
+path = "raw/table1_mineral_composition.xlsx"
+source_filename = "Table 1 Mineral composition final 2.xlsx"
+source_file_id = "7daa1525-0f15-4f1f-a460-89e7df62ecb7"
+size_bytes = 17311
+sha256 = "7ed7b914cca1dffa6e3197668c56acaf78e548f577e27b688d138a8ebc4c11f8"
+
+[[files]]
+path = "raw/table2_fluid_compositions.xlsx"
+source_filename = "Table 2 Fluid compositions final3.xlsx"
+source_file_id = "ea15e507-58cc-4a59-8323-f61f13147bff"
+size_bytes = 13456
+sha256 = "b7c2c7fd2edc0ec94d079fe38df04efa1d9c084298c4c7d8b8f2970e63e666dd"
+
+[[files]]
+path = "raw/table3_natural_fluids.xlsx"
+source_filename = "Table 3 Fluid compositions in natural hydrothremal systems final.xlsx"
+source_file_id = "c4cf436c-a31d-4afc-88f5-731c12d3ccc9"
+size_bytes = 14037
+sha256 = "bf788943921b18e5f29e889d6b3eee1c79be6ea1dde37f970b4bce41c760506a"
+
+[[files]]
+path = "raw/table4_h2_flux.xlsx"
+source_filename = "Table 4 H2 flux.xlsx"
+source_file_id = "6dd3014d-1af2-4d8c-8976-24ec04f12c75"
+size_bytes = 11160
+sha256 = "3f97bc56f10cf9bd6c123f533ed18710514e5900f338830860946e1d6b145cc4"
+
+[[derived_files]]
+path = "fluid_time_series.csv"
+source = "raw/table2_fluid_compositions.xlsx"
+derivation = "Exact Table 2 transcription with normalized headers, filled experiment labels, and explicit not-analyzed/not-detected status columns; no interpolation or rounding."
+size_bytes = 1966
+sha256 = "dabd401a800c78cfa56832b5c09b3f54ec4408c19cb05c47e1c36b6155cbe1bc"

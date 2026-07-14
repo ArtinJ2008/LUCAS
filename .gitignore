@@ -23,5 +23,8 @@ docs/site/
 # Local working memory and machine-specific agent directions.
 /AGENTS.md
 
+# Finder metadata is not part of the scientific source or run artifacts.
+.DS_Store
+
 # Disposable simulator, test, render, and profiling outputs.
 /tmp/

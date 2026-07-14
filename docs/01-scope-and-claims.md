@@ -28,6 +28,11 @@ and biological evolution and may have belonged to an ecosystem. Consequently:
 The project name is retained, but the pipeline must keep the prebiotic,
 protocellular, and LUCA-reconstruction questions separate.
 
+The owner may use “LUCA” informally in conversation to mean the earliest minimal
+self-replicating life-like system. Scientific documentation, configuration,
+output, and publication text call that a **minimal pre-LUCA replicator** and
+continue to reserve **LUCA** for the phylogenetic meaning above.
+
 ## In scope
 
 - 3D vent, pore, chimney, and surrounding-fluid scenario geometries.
